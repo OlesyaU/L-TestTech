@@ -17,12 +17,11 @@ struct LoginViewModel {
     let textFieldCornerRadius: CGFloat = Constants.textFieldCornerRadius
     let labelInset: CGFloat = (Constants.inset56 * 2) + Constants.inset4
     let inset16 = Constants.inset16
+    let heightButton = Constants.inset56 - 2
+    let heightTextField = Constants.inset44
     let buttonFont = UIFont.systemFont(ofSize: 17)
     let labelFont = UIFont.boldSystemFont(ofSize: 20)
-    let labetTextFieldsFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
-
-
-
+    let labelTextFieldsFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
     let backgroundColor = UIColor(ciColor: .white)
     let titleLabelText = "Вход в аккаунт"
     let phoneNumberLabelText = "Телефон"
