@@ -17,6 +17,7 @@
 		765DE0352AE91956007EF5A7 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0342AE91956007EF5A7 /* DetailsViewController.swift */; };
 		765DE0402AE91BA4007EF5A7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE03F2AE91BA4007EF5A7 /* Router.swift */; };
 		765DE0422AE9205E007EF5A7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0412AE9205E007EF5A7 /* LoginViewModel.swift */; };
+		765DE0442AE93375007EF5A7 /* LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0432AE93375007EF5A7 /* LayoutHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		765DE0342AE91956007EF5A7 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		765DE03F2AE91BA4007EF5A7 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		765DE0412AE9205E007EF5A7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		765DE0432AE93375007EF5A7 /* LayoutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +56,6 @@
 				0F6E3A616BFCF0110DBAF712 /* Pods-L-TestTech.debug.xcconfig */,
 				5C645CB29A0F1023AF2D1A95 /* Pods-L-TestTech.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -93,6 +94,7 @@
 				765DE0362AE919B5007EF5A7 /* LoginScene */,
 				765DE0372AE919CF007EF5A7 /* HomeScene */,
 				765DE0382AE919E3007EF5A7 /* DetailsScene */,
+				765DE0432AE93375007EF5A7 /* LayoutHelper.swift */,
 				765DE0272AE91018007EF5A7 /* Assets.xcassets */,
 				765DE0292AE91018007EF5A7 /* LaunchScreen.storyboard */,
 				765DE02C2AE91018007EF5A7 /* Info.plist */,
@@ -290,6 +292,7 @@
 				765DE0232AE91015007EF5A7 /* LoginViewController.swift in Sources */,
 				765DE01F2AE91015007EF5A7 /* AppDelegate.swift in Sources */,
 				765DE0212AE91015007EF5A7 /* SceneDelegate.swift in Sources */,
+				765DE0442AE93375007EF5A7 /* LayoutHelper.swift in Sources */,
 				765DE0332AE91938007EF5A7 /* HomeViewController.swift in Sources */,
 				765DE0402AE91BA4007EF5A7 /* Router.swift in Sources */,
 				765DE0352AE91956007EF5A7 /* DetailsViewController.swift in Sources */,
