@@ -53,8 +53,6 @@ class LoginViewController: UIViewController {
         textField.clearButtonMode = .whileEditing
         textField.placeholder = viewModel.placeholderPasswordTextField
         textField.borderStyle = .roundedRect
-//        textField.leftViewRect(forBounds: CGRect(origin: <#T##CGPoint#>, size: <#T##CGSize#>))
-//        textField.leftView = 
         textField.leftViewMode = .always
         return textField
     }()
@@ -66,6 +64,7 @@ class LoginViewController: UIViewController {
         button.layer.cornerRadius = viewModel.buttonCornerRadius
         button.titleLabel?.font = viewModel.buttonFont
         button.tintColor = .white
+        button.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -73,6 +72,23 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = viewModel.backgroundColor
         layout()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification , object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification , object: nil)
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
 
     private func layout() {
@@ -111,13 +127,33 @@ class LoginViewController: UIViewController {
         }
 
         signInButton.snp.makeConstraints { maker in
-            maker.top.equalTo(phoneTextField.snp.bottom).inset(-viewModel.labelInset)
             maker.left.right.equalToSuperview().inset(viewModel.inset16)
             maker.height.equalTo(viewModel.heightButton)
+            maker.bottom.equalToSuperview().inset(viewModel.labelInset)
         }
+    }
+
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.signInButton.snp.updateConstraints({ maker in
+                let bottomButton = viewModel.inset16 + keyboardSize.height
+                maker.bottom.equalToSuperview().inset(bottomButton)
+            })
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        self.signInButton.snp.updateConstraints({ maker in
+            maker.bottom.equalToSuperview().inset(viewModel.labelInset)
+        })
+    }
+
+    @objc private func signInButtonTapped() {
+        view.endEditing(true)
     }
 }
 
 extension LoginViewController: UITextFieldDelegate {
     // маску берем и накладываем при загрузке на поле с номером
+    
 }
