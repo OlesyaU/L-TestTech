@@ -17,6 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = LoginViewController()
+        LoginNetworkManager.sharedInstance.fetchAPIData { dataFromApi in
+            print(dataFromApi)
+        }
         window?.makeKeyAndVisible()
     }
 

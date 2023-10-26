@@ -8,7 +8,7 @@
 import UIKit
 
 struct LoginViewModel {
-
+    private var presenter: LoginPresenterProtocol?
     let logo = UIImage(named: "L-TechLogo")
     let buttonActiveColor = UIColor(red: 23/255, green: 112/255, blue: 235/255, alpha: 1)
     let buttonDisableColor = UIColor(red: 185/255, green: 212/255, blue: 249/255, alpha: 1)
@@ -27,6 +27,13 @@ struct LoginViewModel {
     let phoneNumberLabelText = "Телефон"
     let passwordNumberLabelText = "Пароль"
     let placeholderPasswordTextField = "Введите пароль"
+//    init(presenter: LoginPresenterProtocol) {
+//        self.presenter = LoginPresenter()
+//    }
+//  private (set)  var phoneMask: String?
+//    var phoneMask: String  {
+//        presenter.updateTextField(with: <#T##String#>)
+//    }
 }
 
 

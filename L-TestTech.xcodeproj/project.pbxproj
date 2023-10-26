@@ -20,6 +20,7 @@
 		765DE0442AE93375007EF5A7 /* LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0432AE93375007EF5A7 /* LayoutHelper.swift */; };
 		765DE0762AEA99F1007EF5A7 /* PhoneMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0752AEA99F1007EF5A7 /* PhoneMask.swift */; };
 		765DE0782AEA9A73007EF5A7 /* LoginNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0772AEA9A73007EF5A7 /* LoginNetworkManager.swift */; };
+		765DE07D2AEAA0DD007EF5A7 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE07C2AEAA0DD007EF5A7 /* LoginPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		765DE0432AE93375007EF5A7 /* LayoutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutHelper.swift; sourceTree = "<group>"; };
 		765DE0752AEA99F1007EF5A7 /* PhoneMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneMask.swift; sourceTree = "<group>"; };
 		765DE0772AEA9A73007EF5A7 /* LoginNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkManager.swift; sourceTree = "<group>"; };
+		765DE07C2AEAA0DD007EF5A7 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				765DE03C2AE91AB3007EF5A7 /* LoginViewModel */,
+				765DE07C2AEAA0DD007EF5A7 /* LoginPresenter.swift */,
 			);
 			path = LoginPresenter;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				765DE01F2AE91015007EF5A7 /* AppDelegate.swift in Sources */,
 				765DE0212AE91015007EF5A7 /* SceneDelegate.swift in Sources */,
 				765DE0442AE93375007EF5A7 /* LayoutHelper.swift in Sources */,
+				765DE07D2AEAA0DD007EF5A7 /* LoginPresenter.swift in Sources */,
 				765DE0782AEA9A73007EF5A7 /* LoginNetworkManager.swift in Sources */,
 				765DE0332AE91938007EF5A7 /* HomeViewController.swift in Sources */,
 				765DE0402AE91BA4007EF5A7 /* Router.swift in Sources */,
