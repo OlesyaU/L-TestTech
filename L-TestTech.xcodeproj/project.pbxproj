@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,8 @@
 		765DE0402AE91BA4007EF5A7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE03F2AE91BA4007EF5A7 /* Router.swift */; };
 		765DE0422AE9205E007EF5A7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0412AE9205E007EF5A7 /* LoginViewModel.swift */; };
 		765DE0442AE93375007EF5A7 /* LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0432AE93375007EF5A7 /* LayoutHelper.swift */; };
+		765DE0762AEA99F1007EF5A7 /* PhoneMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0752AEA99F1007EF5A7 /* PhoneMask.swift */; };
+		765DE0782AEA9A73007EF5A7 /* LoginNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0772AEA9A73007EF5A7 /* LoginNetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		765DE03F2AE91BA4007EF5A7 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		765DE0412AE9205E007EF5A7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		765DE0432AE93375007EF5A7 /* LayoutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutHelper.swift; sourceTree = "<group>"; };
+		765DE0752AEA99F1007EF5A7 /* PhoneMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneMask.swift; sourceTree = "<group>"; };
+		765DE0772AEA9A73007EF5A7 /* LoginNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,8 @@
 		765DE03D2AE91AD0007EF5A7 /* LoginModel */ = {
 			isa = PBXGroup;
 			children = (
+				765DE0752AEA99F1007EF5A7 /* PhoneMask.swift */,
+				765DE0772AEA9A73007EF5A7 /* LoginNetworkManager.swift */,
 			);
 			path = LoginModel;
 			sourceTree = "<group>";
@@ -193,6 +199,8 @@
 			dependencies = (
 			);
 			name = "L-TestTech";
+			packageProductDependencies = (
+			);
 			productName = "L-TestTech";
 			productReference = 765DE01B2AE91015007EF5A7 /* L-TestTech.app */;
 			productType = "com.apple.product-type.application";
@@ -213,7 +221,7 @@
 				};
 			};
 			buildConfigurationList = 765DE0162AE91015007EF5A7 /* Build configuration list for PBXProject "L-TestTech" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -221,6 +229,9 @@
 				Base,
 			);
 			mainGroup = 765DE0122AE91015007EF5A7;
+			packageReferences = (
+				765DE0722AEA993F007EF5A7 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 765DE01C2AE91015007EF5A7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -293,8 +304,10 @@
 				765DE01F2AE91015007EF5A7 /* AppDelegate.swift in Sources */,
 				765DE0212AE91015007EF5A7 /* SceneDelegate.swift in Sources */,
 				765DE0442AE93375007EF5A7 /* LayoutHelper.swift in Sources */,
+				765DE0782AEA9A73007EF5A7 /* LoginNetworkManager.swift in Sources */,
 				765DE0332AE91938007EF5A7 /* HomeViewController.swift in Sources */,
 				765DE0402AE91BA4007EF5A7 /* Router.swift in Sources */,
+				765DE0762AEA99F1007EF5A7 /* PhoneMask.swift in Sources */,
 				765DE0352AE91956007EF5A7 /* DetailsViewController.swift in Sources */,
 				765DE0422AE9205E007EF5A7 /* LoginViewModel.swift in Sources */,
 			);
@@ -364,7 +377,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -418,7 +431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -506,6 +519,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		765DE0722AEA993F007EF5A7 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 765DE0132AE91015007EF5A7 /* Project object */;
 }

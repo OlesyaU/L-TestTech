@@ -72,6 +72,9 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = viewModel.backgroundColor
         layout()
+        LoginNetworkManager.sharedInstance.fetchAPIData { dataFromApi in
+            print(dataFromApi)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -155,5 +158,5 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: UITextFieldDelegate {
     // маску берем и накладываем при загрузке на поле с номером
-    
+
 }
