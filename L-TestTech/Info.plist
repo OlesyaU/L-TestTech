@@ -4,6 +4,13 @@
 <dict>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>http://dev-exam.l-tech.ru/api/v1/phone_masks</key>
+			<string></string>
+			<key>http://dev-exam.l-tech.ru/api/v1/auth</key>
+			<string></string>
+		</dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>

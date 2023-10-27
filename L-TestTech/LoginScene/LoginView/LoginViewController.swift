@@ -5,6 +5,7 @@
 //  Created by Олеся on 25.10.2023.
 //
 import SnapKit
+import RealmSwift
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -83,6 +84,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = viewModel.backgroundColor
         layout()
+        let realm = try! Realm()
+        print(Realm.Configuration.defaultConfiguration.fileURL)
     }
     
     override func viewWillAppear(_ animated: Bool) {

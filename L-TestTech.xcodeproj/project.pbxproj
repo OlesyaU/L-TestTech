@@ -21,6 +21,8 @@
 		765DE0762AEA99F1007EF5A7 /* PhoneMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0752AEA99F1007EF5A7 /* PhoneMask.swift */; };
 		765DE0782AEA9A73007EF5A7 /* LoginNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0772AEA9A73007EF5A7 /* LoginNetworkManager.swift */; };
 		765DE07D2AEAA0DD007EF5A7 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE07C2AEAA0DD007EF5A7 /* LoginPresenter.swift */; };
+		76EFBBD72AEBD43400A36D06 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 76EFBBD62AEBD43400A36D06 /* Realm */; };
+		76EFBBD92AEBD43400A36D06 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 76EFBBD82AEBD43400A36D06 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76EFBBD92AEBD43400A36D06 /* RealmSwift in Frameworks */,
+				76EFBBD72AEBD43400A36D06 /* Realm in Frameworks */,
 				5B70127765B5BBB481CA53F5 /* Pods_L_TestTech.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,6 +207,8 @@
 			);
 			name = "L-TestTech";
 			packageProductDependencies = (
+				76EFBBD62AEBD43400A36D06 /* Realm */,
+				76EFBBD82AEBD43400A36D06 /* RealmSwift */,
 			);
 			productName = "L-TestTech";
 			productReference = 765DE01B2AE91015007EF5A7 /* L-TestTech.app */;
@@ -234,6 +240,7 @@
 			mainGroup = 765DE0122AE91015007EF5A7;
 			packageReferences = (
 				765DE0722AEA993F007EF5A7 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				76EFBBD52AEBD43400A36D06 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 765DE01C2AE91015007EF5A7 /* Products */;
 			projectDirPath = "";
@@ -533,7 +540,28 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		76EFBBD52AEBD43400A36D06 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		76EFBBD62AEBD43400A36D06 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 76EFBBD52AEBD43400A36D06 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		76EFBBD82AEBD43400A36D06 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 76EFBBD52AEBD43400A36D06 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 765DE0132AE91015007EF5A7 /* Project object */;
 }
