@@ -157,6 +157,7 @@ class LoginViewController: UIViewController {
                     let bottomButton = self.viewModel.inset16 + keyboardSize.height
                     maker.bottom.equalToSuperview().inset(bottomButton)
                 })
+                
             }
             self.view.layoutIfNeeded()
         }
@@ -172,6 +173,14 @@ class LoginViewController: UIViewController {
         switch passwordTextField.isSecureTextEntry {
             case true:
                 eyeButton.setBackgroundImage(viewModel.closeEye, for: .normal)
+//             var ttt =  passwordTextField.text
+                passwordTextField.isSecureTextEntry = false
+                print(passwordTextField.text)
+//                                passwordTextField.text?.replacingOccurrences(of: passwordTextField.text!, with: "*")
+                let te = passwordTextField.text?.count
+//                passwordTextField.text = Array(repeating: "*", count: te!)
+//                passwordTextField.text?.count
+
             case false:
                 eyeButton.setBackgroundImage(viewModel.openEye, for: .normal)
                 print(passwordTextField.text)
@@ -191,5 +200,27 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: UITextFieldDelegate {
     // маску берем и накладываем при загрузке на поле с номером
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+//         {
+//              passwordTextField = password+string
+//              textField.text = textField.text!+"*"
+//              return false
+//         }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        print (string)
+//        if textField.tag == 1 {
+
+            guard let text = textField.text?.replacingOccurrences(of: string, with: "*") else {
+                return false
+            }
+//            passwordTextField.text = text
+//            passwordTextField.text?.replacingOccurrences(of: text, with: "*****")
+//        }
+//           let newText = text.applyPatternOnNumbers(pattern: "### ### ## ##", replacementCharacter: "#")
+//           textField.text = "+7 \(newText)"
+//           let newLength = text.count - 3
+//           return newLength <= 10 || string.isEmpty
+        return true
+       }
 
 }
