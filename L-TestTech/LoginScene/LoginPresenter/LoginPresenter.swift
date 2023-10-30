@@ -8,22 +8,43 @@
 import Foundation
 
 protocol LoginPresenterProtocol {
-    func updateTextField()
+//    это строка - маска
+    func updateTextField(response: String)
 }
-
+//НЕ РАБОТАЕТ КАК НАДО!!!ЧТО_ТО НАДО СДЕЛАТЬ С НАСТРОЙКОЙ ВЬЮ КОНТРОЛЛЕРА
 
 final class LoginPresenter {
-    private var loginViewModel = LoginViewModel()
+    weak var loginViewContrroller: LoginSceneDisplayProtocol?
 
 }
 extension LoginPresenter: LoginPresenterProtocol {
-    func updateTextField() {
-        LoginNetworkManager.sharedInstance.fetchAPIData { dataFromApi in
-//            loginViewModel.phoneMask = dataFromApi
-//           dataFromApi
-            print(dataFromApi)
-        }
+
+    func updateTextField(response: String) {
+        var viewModel =  LoginViewModel()
+//        viewModel.mask = response
+//        viewModel.mask = response
+        print("func updateTextField(response: String)  from presenter - response - \(response), vi")
+//        loginViewContrroller?.displayUser(viewModel: viewModel)
+        loginViewContrroller?.displayMask(mask: response)
     }
 
 
 }
+//import Foundation
+//
+//protocol CleanScenePresentationLogic: AnyObject {
+//    func presentSomething(response: CleanSceneModels.Something.Response)
+//}
+
+//class CleanScenePresenter {
+//    weak var viewController: CleanSceneDisplayLogic?
+//}
+//
+//// MARK: - Presentation Logic Functions
+//extension CleanScenePresenter: CleanScenePresentationLogic {
+//    // MARK: Present something
+//    func presentSomething(response: CleanSceneModels.Something.Response) {
+//        let viewModel = CleanSceneModels.Something.ViewModel() // make viewModel from response
+//        viewController?.displaySomething(viewModel: viewModel)
+//    }
+//}

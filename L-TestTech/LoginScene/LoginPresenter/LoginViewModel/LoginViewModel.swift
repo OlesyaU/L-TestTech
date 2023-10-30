@@ -29,16 +29,35 @@ struct LoginViewModel {
     let placeholderPasswordTextField = "Введите пароль"
     let openEye =  UIImage(named: "openEye")
     let closeEye =  UIImage(named: "closeEye")
-//    let closeEye = UIImageView(image: UIImage(named: "closeEye"))
+//    var mask: String = ""
+////    возможно нужен будет метод, который возвращает стринг, как тот что ниже
+////    var mask: String = formattedNumber(<#T##self: LoginViewModel##LoginViewModel#>)
+//    //    let closeEye = UIImageView(image: UIImage(named: "closeEye"))
+////WE HAVE TO GET THE MASKKKK
+//
+//    //    init(presenter: LoginPresenterProtocol) {
+//    //        self.presenter = LoginPresenter()
+//    //    }
+//    //  private (set)  var phoneMask: String?
+//    //    var phoneMask: String  {
+//    //        presenter.updateTextField(with: <#T##String#>)
+//    //    }
+//    //}
 
-
-//    init(presenter: LoginPresenterProtocol) {
-//        self.presenter = LoginPresenter()
-//    } 
-//  private (set)  var phoneMask: String?
-//    var phoneMask: String  {
-//        presenter.updateTextField(with: <#T##String#>)
-//    }
+    func formattedNumber(number: String) -> String {
+        let cleanPhoneNumber = number.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+//        (вот тут то ли маску надо указать которая пришла-number то лине пойму что есть пример в статейном  приимере)
+        let mask = number
+        var result = ""
+        var index = cleanPhoneNumber.startIndex
+        for ch in mask where index < cleanPhoneNumber.endIndex {
+            if ch == "#" {
+                result.append(cleanPhoneNumber[index])
+                index = cleanPhoneNumber.index(after: index)
+            } else {
+                result.append(ch)
+            }
+        }
+        return result
+    }
 }
-
-

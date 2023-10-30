@@ -15,7 +15,6 @@
 		765DE02B2AE91018007EF5A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 765DE0292AE91018007EF5A7 /* LaunchScreen.storyboard */; };
 		765DE0332AE91938007EF5A7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0322AE91938007EF5A7 /* HomeViewController.swift */; };
 		765DE0352AE91956007EF5A7 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0342AE91956007EF5A7 /* DetailsViewController.swift */; };
-		765DE0402AE91BA4007EF5A7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE03F2AE91BA4007EF5A7 /* Router.swift */; };
 		765DE0422AE9205E007EF5A7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0412AE9205E007EF5A7 /* LoginViewModel.swift */; };
 		765DE0442AE93375007EF5A7 /* LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0432AE93375007EF5A7 /* LayoutHelper.swift */; };
 		765DE0762AEA99F1007EF5A7 /* PhoneMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE0752AEA99F1007EF5A7 /* PhoneMask.swift */; };
@@ -23,6 +22,10 @@
 		765DE07D2AEAA0DD007EF5A7 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DE07C2AEAA0DD007EF5A7 /* LoginPresenter.swift */; };
 		76EFBBD72AEBD43400A36D06 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 76EFBBD62AEBD43400A36D06 /* Realm */; };
 		76EFBBD92AEBD43400A36D06 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 76EFBBD82AEBD43400A36D06 /* RealmSwift */; };
+		76EFBBDB2AEBDE4500A36D06 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EFBBDA2AEBDE4500A36D06 /* UserModel.swift */; };
+		76EFBBDD2AEBE02E00A36D06 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EFBBDC2AEBE02E00A36D06 /* LoginInteractor.swift */; };
+		76EFBC092AEC4E0500A36D06 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EFBC082AEC4E0500A36D06 /* Models.swift */; };
+		76EFBC0B2AEEF8D500A36D06 /* String+ Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EFBC0A2AEEF8D500A36D06 /* String+ Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,12 +41,15 @@
 		765DE02C2AE91018007EF5A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		765DE0322AE91938007EF5A7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		765DE0342AE91956007EF5A7 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
-		765DE03F2AE91BA4007EF5A7 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		765DE0412AE9205E007EF5A7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		765DE0432AE93375007EF5A7 /* LayoutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutHelper.swift; sourceTree = "<group>"; };
 		765DE0752AEA99F1007EF5A7 /* PhoneMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneMask.swift; sourceTree = "<group>"; };
 		765DE0772AEA9A73007EF5A7 /* LoginNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkManager.swift; sourceTree = "<group>"; };
 		765DE07C2AEAA0DD007EF5A7 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		76EFBBDA2AEBDE4500A36D06 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		76EFBBDC2AEBE02E00A36D06 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		76EFBC082AEC4E0500A36D06 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		76EFBC0A2AEEF8D500A36D06 /* String+ Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,11 +106,12 @@
 			children = (
 				765DE01E2AE91015007EF5A7 /* AppDelegate.swift */,
 				765DE0202AE91015007EF5A7 /* SceneDelegate.swift */,
-				765DE03E2AE91B85007EF5A7 /* Router */,
+				76EFBC082AEC4E0500A36D06 /* Models.swift */,
 				765DE0362AE919B5007EF5A7 /* LoginScene */,
 				765DE0372AE919CF007EF5A7 /* HomeScene */,
 				765DE0382AE919E3007EF5A7 /* DetailsScene */,
 				765DE0432AE93375007EF5A7 /* LayoutHelper.swift */,
+				76EFBC0A2AEEF8D500A36D06 /* String+ Extension.swift */,
 				765DE0272AE91018007EF5A7 /* Assets.xcassets */,
 				765DE0292AE91018007EF5A7 /* LaunchScreen.storyboard */,
 				765DE02C2AE91018007EF5A7 /* Info.plist */,
@@ -118,6 +125,7 @@
 				765DE0392AE91A0E007EF5A7 /* LoginView */,
 				765DE03A2AE91A20007EF5A7 /* LoginInteractor */,
 				765DE03B2AE91A72007EF5A7 /* LoginPresenter */,
+				76EFBBDA2AEBDE4500A36D06 /* UserModel.swift */,
 			);
 			path = LoginScene;
 			sourceTree = "<group>";
@@ -176,16 +184,9 @@
 			children = (
 				765DE0752AEA99F1007EF5A7 /* PhoneMask.swift */,
 				765DE0772AEA9A73007EF5A7 /* LoginNetworkManager.swift */,
+				76EFBBDC2AEBE02E00A36D06 /* LoginInteractor.swift */,
 			);
 			path = LoginModel;
-			sourceTree = "<group>";
-		};
-		765DE03E2AE91B85007EF5A7 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				765DE03F2AE91BA4007EF5A7 /* Router.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,9 +318,12 @@
 				765DE07D2AEAA0DD007EF5A7 /* LoginPresenter.swift in Sources */,
 				765DE0782AEA9A73007EF5A7 /* LoginNetworkManager.swift in Sources */,
 				765DE0332AE91938007EF5A7 /* HomeViewController.swift in Sources */,
-				765DE0402AE91BA4007EF5A7 /* Router.swift in Sources */,
 				765DE0762AEA99F1007EF5A7 /* PhoneMask.swift in Sources */,
+				76EFBC092AEC4E0500A36D06 /* Models.swift in Sources */,
 				765DE0352AE91956007EF5A7 /* DetailsViewController.swift in Sources */,
+				76EFBBDD2AEBE02E00A36D06 /* LoginInteractor.swift in Sources */,
+				76EFBC0B2AEEF8D500A36D06 /* String+ Extension.swift in Sources */,
+				76EFBBDB2AEBDE4500A36D06 /* UserModel.swift in Sources */,
 				765DE0422AE9205E007EF5A7 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
