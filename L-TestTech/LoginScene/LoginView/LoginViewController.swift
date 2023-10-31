@@ -54,6 +54,7 @@ final class LoginViewController: UIViewController {
         textField.clearButtonMode = .always
         textField.borderStyle = .roundedRect
         textField.keyboardType = .phonePad
+        textField.clearsOnBeginEditing = false
         return textField
     }()
 
@@ -91,10 +92,9 @@ final class LoginViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-
         setup()
-
     }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
@@ -232,50 +232,43 @@ final class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: UITextFieldDelegate {
-
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string:  String) -> Bool {
-        let maskNew = mask.replacingOccurrences(of:"[^\\s(A-Z-)]", with: "#", options: .regularExpression, range: nil)
-        print("maskNew \(maskNew), mask \(mask)")
+        let maskNew = mask.replacingOccurrences(of:"[^//s*?/(?/)?(A-Z)*-]", with: "#", options: .regularExpression, range: nil)
+        let componentsBetweenDashCount = maskNew.components(separatedBy: "-").count
+        let hasBrackets = maskNew.contains { $0 == ")" }
         guard let text = textField.text?.replacingOccurrences(of: preMask, with: "") else {
             return false
         }
-        let newText = text.applyPatternOnNumbers(pattern: String(maskNew), replacementCharacter: "#")
+        let newText = text.applyPatternOnNumbers(pattern: maskNew, replacementCharacter: "#")
 
-        print("textNEW \(newText)")
+        //newLength for masks with brackets +375 and +44
+        var newLength = newText.count + preMask.count - (componentsBetweenDashCount + 1)
+        // newLength for mask with brackets
+        if hasBrackets {
+            newLength  -= 1
+        } else if !hasBrackets, preMask == "+7" {
+            //newLenght for mask without
+            newLength = newText.count + preMask.count - componentsBetweenDashCount
+        }
 
-        let maskT = mask.components(separatedBy: " ").dropFirst().joined()
-        print(preMask, maskT,newText)
-        var newLength = text.count - 3
-        print(newLength)
-
-        textField.text = preMask + newText
+        textField.text = preMask + " " + newText
         return newLength <= 10 || string.isEmpty
     }
 }
 extension LoginViewController: LoginSceneDisplayProtocol {
     func displayUser(viewModel: LoginViewModel) {
         self.viewModel = viewModel
-
     }
 
-
-    func displayMask(mask: String)  {
+    func displayMask(mask: String) {
         var mutMask = mask.components(separatedBy: " ").dropFirst().joined()
         preMask = mask.components(separatedBy: " ").first ?? "+0"
         phoneTextField.text = preMask
         self.mask = mutMask
-        print("mask displayMask(mask: String) \(mask), preMask \(preMask), mut mask \(mutMask)")
-
     }
 
     func fetchMask() {
         let request =  "http://dev-exam.l-tech.ru/api/v1/phone_masks"
         interactor?.getPhoneMask(request: request)
     }
-    
-    //    func startDisplay(mask: String) {
-    ////        берем у презентера маску
-    //    }
-    //
-
 }
