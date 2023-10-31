@@ -18,8 +18,10 @@ final class LoginViewController: UIViewController {
     var viewModel = LoginViewModel()
 
     private var interactor: (LoginBusinessLogic & LoginDataStoreProtocol)?
-    private var mask: String = ""
+    private var mask = ""
     private var preMask = ""
+    private var phoneNumber = ""
+    private var password = ""
     
     private lazy var logo: UIImageView = {
         let image = UIImageView(image: viewModel.logo)
@@ -49,7 +51,7 @@ final class LoginViewController: UIViewController {
     
     private lazy var phoneTextField: UITextField = {
         let textField = UITextField()
-        //        textField.tag = 0
+                textField.tag = 0
         textField.delegate = self
         textField.clearButtonMode = .always
         textField.borderStyle = .roundedRect
@@ -67,14 +69,15 @@ final class LoginViewController: UIViewController {
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-        //        textField.tag = 1
+                textField.tag = 1
         textField.delegate = self
         textField.clearButtonMode = .whileEditing
         textField.placeholder = viewModel.placeholderPasswordTextField
         textField.borderStyle = .roundedRect
         textField.rightViewMode = .always
         textField.rightView = eyeButton
-        textField.isSecureTextEntry = false
+        textField.passwordRules = UITextInputPasswordRules(descriptor: "required: upper; required: lower; required: digit; max-consecutive: 2; minlength: 9;")
+        textField.isSecureTextEntry = true
         return textField
     }()
 
@@ -149,6 +152,7 @@ final class LoginViewController: UIViewController {
             self.view.endEditing(true)
         }
     }
+
     private func layout() {
 
         [logo,label,labelPhone, phoneTextField, labelPassword, passwordTextField, signInButton,].forEach({view.addSubview($0)})
@@ -216,7 +220,7 @@ final class LoginViewController: UIViewController {
                 eyeButton.setBackgroundImage(viewModel.closeEye, for: .normal)
             case false:
                 eyeButton.setBackgroundImage(viewModel.openEye, for: .normal)
-                print(passwordTextField.text)
+//                print(passwordTextField.text)
         }
     }
 
@@ -236,7 +240,7 @@ extension LoginViewController: UITextFieldDelegate {
         let maskNew = mask.replacingOccurrences(of:"[^//s*?/(?/)?(A-Z)*-]", with: "#", options: .regularExpression, range: nil)
         let componentsBetweenDashCount = maskNew.components(separatedBy: "-").count
         let hasBrackets = maskNew.contains { $0 == ")" }
-        guard let text = textField.text?.replacingOccurrences(of: preMask, with: "") else {
+        guard let text = phoneTextField.text?.replacingOccurrences(of: preMask, with: "") else {
             return false
         }
         let newText = text.applyPatternOnNumbers(pattern: maskNew, replacementCharacter: "#")
@@ -251,8 +255,32 @@ extension LoginViewController: UITextFieldDelegate {
             newLength = newText.count + preMask.count - componentsBetweenDashCount
         }
 
-        textField.text = preMask + " " + newText
-        return newLength <= 10 || string.isEmpty
+        switch textField.tag {
+            case 0 :
+                textField.text = preMask + " " + newText
+                if newLength == 11 {
+               phoneNumber = getPhone(phone: textField.text!)
+                }
+                return newLength <= 10 || string.isEmpty
+
+            case 1:
+
+//          TODO: add settings the field 
+                return true
+            default:
+                return false
+        }
+    }
+    func getPhone(phone: String) -> String {
+     let nm = phone.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        print(nm)
+return nm
+    }
+    private func checkPhoneNumber(phoneNumber: String) ->Bool {
+return true
+    }
+    private func checkPassword(password: String) ->Bool {
+return true
     }
 }
 extension LoginViewController: LoginSceneDisplayProtocol {
