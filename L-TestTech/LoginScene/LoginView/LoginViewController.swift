@@ -51,12 +51,12 @@ final class LoginViewController: UIViewController {
     }()
 
     private lazy var labelWrong: UILabel = {
-    let label = UILabel()
-    label.text = viewModel.wrongTextLabel
-    label.font = viewModel.buttonFont
-    label.textColor = viewModel.wrongColor
-    label.isHidden = true
-    return label
+        let label = UILabel()
+        label.text = viewModel.wrongTextLabel
+        label.font = viewModel.buttonFont
+        label.textColor = viewModel.wrongColor
+        label.isHidden = true
+        return label
     }()
     
     private lazy var phoneTextField: UITextField = {
@@ -228,7 +228,7 @@ final class LoginViewController: UIViewController {
     //    }
 
     @objc func eyeToggle() {
-        guard var text = passwordTextField.text else {return}
+        guard let text = passwordTextField.text else {return}
         isOpenEye.toggle()
         switch isOpenEye {
             case true:
@@ -239,7 +239,6 @@ final class LoginViewController: UIViewController {
                 eyeButton.setBackgroundImage(viewModel.closeEye, for: .normal)
                 let stars = text.replacingOccurrences(of: "[a-zA-Z0-9{9}]", with: "*",options: .regularExpression)
                 passwordTextField.text = stars
-                print(password, text)
         }
     }
 
@@ -251,12 +250,13 @@ final class LoginViewController: UIViewController {
             self.view.layoutIfNeeded()
             self.view.endEditing(true)
         }
-//        TODO: implement check user go interactor -> database
+        checkUserData(phoneNumber: phoneNumber, password: password)
     }
 }
 
 extension LoginViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string:  String) -> Bool {
+        // Settings For Phone Text Field
         let maskNew = mask.replacingOccurrences(of:"[^//s*?/(?/)?(A-Z)*-]", with: "#", options: .regularExpression, range: nil)
         let componentsBetweenDashCount = maskNew.components(separatedBy: "-").count
         let hasBrackets = maskNew.contains { $0 == ")" }
@@ -275,76 +275,53 @@ extension LoginViewController: UITextFieldDelegate {
             newLength = newText.count + preMask.count - componentsBetweenDashCount
         }
 
+        // Settings For Password Text Field
+        let passwordMask = "#########"
+        guard let passText = passwordTextField.text?.replacingOccurrences(of: "[^(a-zA-Z0-9)+$]", with: "", options: .regularExpression, range: nil) else {
+            return false
+        }
+        let newPassword = passText.applyPatternOnPassword(pattern: passwordMask, replacementCharacter: "#")
+
         switch textField.tag {
             case 0 :
                 textField.text = preMask + " " + newText
                 if newLength == 11 {
-             getPhone(phone: textField.text!)
+                    getPhone(phone: textField.text!)
                 }
                 return newLength <= 10 || string.isEmpty
-
             case 1:
-                let pasMask = "#########"
-//                let pattern = "^[a-zA-Z0-9]+$"
-                guard let passText = passwordTextField.text?.replacingOccurrences(of: "[^a-zA-Z0-9]+$", with: "", options: .regularExpression, range: nil) else {
-                    return false
-                }
-//                guard let passText = passwordTextField.text else {return false}
-//                passwordTextField.text = passText
-//                let passwordPattern = "(?=.*[A-Za-z0-9]{8})"
-//                var result = passText.range(
-//                    of:passwordPattern,
-//                    options: .regularExpression
-//                )
-//                let newPass = passText.applyPatternOnPassword(pattern: pasMask, replacementCharacter: "#")
-//                textField.text = newPass
-                                let newCount = passText.count
-                textField.text = passText
-                print(passText)
-//print(result)
-         
-//                var validPassword = (result != nil)
-//        print(validPassword)
-//          TODO: add settings the field
-                return true
+                textField.text = newPassword
+                password = newPassword
+                return newPassword.count <= 8 || string.isEmpty
             default:
                 return false
         }
     }
-/*
- Номера телефонов:
-
- 1
- •
- 79005868675
- 449009223321
- 375663211234
- Пароль: devExam18
- */
-
-
-    func getPhone(phone: String)  {
-   phoneNumber = phone.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-        print(phoneNumber)
-    }
-    private func checkPhoneNumber(phoneNumber: String) ->Bool {
-return true
-    }
-    private func checkPassword(password: String) ->Bool {
-return true
+    
+  private func getPhone(phone: String)  {
+        phoneNumber = phone.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
     }
 
+    private func checkUserData(phoneNumber: String, password: String) -> Bool {
+        return true
+    }
+
+    private func showWrongLabel() {
+        labelWrong.isHidden = false
+        passwordTextField.layer.borderColor = viewModel.wrongColor.cgColor
+    }
 }
+
 extension LoginViewController: LoginSceneDisplayProtocol {
     func displayUser(viewModel: LoginViewModel) {
         self.viewModel = viewModel
     }
 
     func displayMask(mask: String) {
-        var mutMask = mask.components(separatedBy: " ").dropFirst().joined()
+        var mutatedMask = mask.components(separatedBy: " ").dropFirst().joined()
         preMask = mask.components(separatedBy: " ").first ?? "+0"
         phoneTextField.text = preMask
-        self.mask = mutMask
+        self.mask = mutatedMask
     }
 
     func fetchMask() {

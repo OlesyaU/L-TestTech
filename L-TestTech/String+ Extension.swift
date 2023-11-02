@@ -6,7 +6,9 @@
 //
 
 import Foundation
+
 extension String {
+
     func applyPatternOnNumbers(pattern: String, replacementCharacter: Character) -> String {
         var pureNumber = self.replacingOccurrences( of: "[^0-9]", with: "", options: .regularExpression)
 
@@ -20,17 +22,15 @@ extension String {
         return pureNumber
     }
 
-func applyPatternOnPassword(pattern: String, replacementCharacter: Character) -> String {
-    var purePassword = self.replacingOccurrences( of: "[^+]{9}", with: "", options: .regularExpression)
-//    ?=.*      [A-Za-z0-9]
-    for index in 0 ..< pattern.count {
-        guard index < purePassword.count else { return purePassword }
-        let stringIndex = String.Index(utf16Offset: index, in: pattern)
-        let patternCharacter = pattern[stringIndex]
-        guard patternCharacter != replacementCharacter else { continue }
-        purePassword.insert(patternCharacter, at: stringIndex)
+    func applyPatternOnPassword(pattern: String, replacementCharacter: Character) -> String {
+        var purePassword = self.replacingOccurrences( of: "[^A-Za-z0-9]$", with: "", options: .regularExpression)
+        for index in 0 ..< pattern.count {
+            guard index < purePassword.count else { return purePassword }
+            let stringIndex = String.Index(utf16Offset: index, in: pattern)
+            let patternCharacter = pattern[stringIndex]
+            guard patternCharacter != replacementCharacter else { continue }
+            purePassword.insert(patternCharacter, at: stringIndex)
+        }
+        return purePassword
     }
-    return purePassword
-}
-
 }
