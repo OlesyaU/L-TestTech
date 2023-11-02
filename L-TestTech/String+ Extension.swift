@@ -21,7 +21,7 @@ extension String {
     }
 
 func applyPatternOnPassword(pattern: String, replacementCharacter: Character) -> String {
-    var purePassword = self.replacingOccurrences( of: "\\W\\w\\D\\d*[^ *?+[(){}^$|\\.]{8}", with: "", options: .regularExpression)
+    var purePassword = self.replacingOccurrences( of: "[^+]{9}", with: "", options: .regularExpression)
 //    ?=.*      [A-Za-z0-9]
     for index in 0 ..< pattern.count {
         guard index < purePassword.count else { return purePassword }

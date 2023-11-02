@@ -61,7 +61,7 @@ final class LoginViewController: UIViewController {
     
     private lazy var phoneTextField: UITextField = {
         let textField = UITextField()
-                textField.tag = 0
+        textField.tag = 0
         textField.delegate = self
         textField.clearButtonMode = .always
         textField.borderStyle = .roundedRect
@@ -79,7 +79,7 @@ final class LoginViewController: UIViewController {
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-                textField.tag = 1
+        textField.tag = 1
         textField.delegate = self
         textField.clearButtonMode = .whileEditing
         textField.placeholder = viewModel.placeholderPasswordTextField
@@ -237,7 +237,7 @@ final class LoginViewController: UIViewController {
             case false:
                 password = text
                 eyeButton.setBackgroundImage(viewModel.closeEye, for: .normal)
-                let stars = text.replacingOccurrences(of: "[a-zA-Z0-9]", with: "*",options: .regularExpression)
+                let stars = text.replacingOccurrences(of: "[a-zA-Z0-9{9}]", with: "*",options: .regularExpression)
                 passwordTextField.text = stars
                 print(password, text)
         }
@@ -285,19 +285,24 @@ extension LoginViewController: UITextFieldDelegate {
 
             case 1:
                 let pasMask = "#########"
-                guard let passText = passwordTextField.text?.replacingOccurrences(of: pasMask, with: "") else {
+//                let pattern = "^[a-zA-Z0-9]+$"
+                guard let passText = passwordTextField.text?.replacingOccurrences(of: "[^a-zA-Z0-9]+$", with: "", options: .regularExpression, range: nil) else {
                     return false
                 }
+//                guard let passText = passwordTextField.text else {return false}
+//                passwordTextField.text = passText
 //                let passwordPattern = "(?=.*[A-Za-z0-9]{8})"
 //                var result = passText.range(
-//                    of: passwordPattern,
+//                    of:passwordPattern,
 //                    options: .regularExpression
 //                )
-                let newPass = passText.applyPatternOnPassword(pattern: pasMask, replacementCharacter: "#")
-                let newCount = passText.count - pasMask.count
-                textField.text = newPass
-                print(newPass, newCount)
-
+//                let newPass = passText.applyPatternOnPassword(pattern: pasMask, replacementCharacter: "#")
+//                textField.text = newPass
+                                let newCount = passText.count
+                textField.text = passText
+                print(passText)
+//print(result)
+         
 //                var validPassword = (result != nil)
 //        print(validPassword)
 //          TODO: add settings the field
