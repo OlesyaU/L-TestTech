@@ -18,6 +18,7 @@ final class LoginViewController: UIViewController {
     var viewModel = LoginViewModel()
 
     private var interactor: (LoginBusinessLogic & LoginDataStoreProtocol)?
+    private var isOpenEye = true
     private var mask = ""
     private var preMask = ""
     private var phoneNumber = ""
@@ -48,6 +49,15 @@ final class LoginViewController: UIViewController {
         label.font = viewModel.labelTextFieldsFont
         return label
     }()
+
+    private lazy var labelWrong: UILabel = {
+    let label = UILabel()
+    label.text = viewModel.wrongTextLabel
+    label.font = viewModel.buttonFont
+    label.textColor = viewModel.wrongColor
+    label.isHidden = true
+    return label
+    }()
     
     private lazy var phoneTextField: UITextField = {
         let textField = UITextField()
@@ -76,8 +86,7 @@ final class LoginViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.rightViewMode = .always
         textField.rightView = eyeButton
-        textField.passwordRules = UITextInputPasswordRules(descriptor: "required: upper; required: lower; required: digit; max-consecutive: 2; minlength: 9;")
-        textField.isSecureTextEntry = true
+        textField.keyboardType = .namePhonePad
         return textField
     }()
 
@@ -87,7 +96,8 @@ final class LoginViewController: UIViewController {
         button.setTitle(viewModel.buttonTitle, for: .normal)
         button.layer.cornerRadius = viewModel.buttonCornerRadius
         button.titleLabel?.font = viewModel.buttonFont
-        button.tintColor = .white
+        button.tintColor = viewModel.backgroundColor
+        button.isEnabled = false
         button.addTarget(self, action: #selector(signInButtonTapped),
                          for: .touchUpInside)
         return button
@@ -155,7 +165,7 @@ final class LoginViewController: UIViewController {
 
     private func layout() {
 
-        [logo,label,labelPhone, phoneTextField, labelPassword, passwordTextField, signInButton,].forEach({view.addSubview($0)})
+        [logo,label,labelPhone, phoneTextField, labelPassword, passwordTextField,labelWrong, signInButton,].forEach({view.addSubview($0)})
         
         logo.snp.makeConstraints { maker in
             maker.top.equalToSuperview().inset(56)
@@ -188,6 +198,11 @@ final class LoginViewController: UIViewController {
             maker.left.right.equalToSuperview().inset(viewModel.inset16)
             maker.height.equalTo(viewModel.heightTextField)
         }
+
+        labelWrong.snp.makeConstraints { maker in
+            maker.top.equalTo(passwordTextField.snp.bottom)
+            maker.left.equalTo(passwordTextField.snp.left)
+        }
         
         signInButton.snp.makeConstraints { maker in
             maker.left.right.equalToSuperview().inset(viewModel.inset16)
@@ -213,14 +228,18 @@ final class LoginViewController: UIViewController {
     //    }
 
     @objc func eyeToggle() {
-        passwordTextField.isSecureTextEntry.toggle()
-        print(passwordTextField.isSecureTextEntry)
-        switch passwordTextField.isSecureTextEntry {
+        guard var text = passwordTextField.text else {return}
+        isOpenEye.toggle()
+        switch isOpenEye {
             case true:
-                eyeButton.setBackgroundImage(viewModel.closeEye, for: .normal)
-            case false:
                 eyeButton.setBackgroundImage(viewModel.openEye, for: .normal)
-//                print(passwordTextField.text)
+                passwordTextField.text = password
+            case false:
+                password = text
+                eyeButton.setBackgroundImage(viewModel.closeEye, for: .normal)
+                let stars = text.replacingOccurrences(of: "[a-zA-Z0-9]", with: "*",options: .regularExpression)
+                passwordTextField.text = stars
+                print(password, text)
         }
     }
 
@@ -232,6 +251,7 @@ final class LoginViewController: UIViewController {
             self.view.layoutIfNeeded()
             self.view.endEditing(true)
         }
+//        TODO: implement check user go interactor -> database
     }
 }
 
@@ -259,22 +279,48 @@ extension LoginViewController: UITextFieldDelegate {
             case 0 :
                 textField.text = preMask + " " + newText
                 if newLength == 11 {
-               phoneNumber = getPhone(phone: textField.text!)
+             getPhone(phone: textField.text!)
                 }
                 return newLength <= 10 || string.isEmpty
 
             case 1:
+                let pasMask = "#########"
+                guard let passText = passwordTextField.text?.replacingOccurrences(of: pasMask, with: "") else {
+                    return false
+                }
+//                let passwordPattern = "(?=.*[A-Za-z0-9]{8})"
+//                var result = passText.range(
+//                    of: passwordPattern,
+//                    options: .regularExpression
+//                )
+                let newPass = passText.applyPatternOnPassword(pattern: pasMask, replacementCharacter: "#")
+                let newCount = passText.count - pasMask.count
+                textField.text = newPass
+                print(newPass, newCount)
 
-//          TODO: add settings the field 
+//                var validPassword = (result != nil)
+//        print(validPassword)
+//          TODO: add settings the field
                 return true
             default:
                 return false
         }
     }
-    func getPhone(phone: String) -> String {
-     let nm = phone.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-        print(nm)
-return nm
+/*
+ Номера телефонов:
+
+ 1
+ •
+ 79005868675
+ 449009223321
+ 375663211234
+ Пароль: devExam18
+ */
+
+
+    func getPhone(phone: String)  {
+   phoneNumber = phone.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        print(phoneNumber)
     }
     private func checkPhoneNumber(phoneNumber: String) ->Bool {
 return true
@@ -282,6 +328,7 @@ return true
     private func checkPassword(password: String) ->Bool {
 return true
     }
+
 }
 extension LoginViewController: LoginSceneDisplayProtocol {
     func displayUser(viewModel: LoginViewModel) {
