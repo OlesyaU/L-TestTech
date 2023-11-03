@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let root = LoginViewController()
         window?.rootViewController = root
         root.fetchMask()
+//        LoginNetworkManager.sharedInstance.checkUser(phone: "799999999", password: "Asdf12345")
         window?.makeKeyAndVisible()
     }
 

@@ -17,4 +17,13 @@ class User: Object {
           self.phone = phone
           self.password = password
       }
+   
 }
+
+let users = [
+    User(phone: "79005868675", password: "devExam18"),
+    User(phone: "449009223321", password: "devExam18"),
+    User(phone: "375663211234", password: "devExam18")
+]
+
+

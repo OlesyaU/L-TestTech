@@ -11,7 +11,6 @@ protocol LoginPresenterProtocol {
 //    это строка - маска
     func updateTextField(response: String)
 }
-//НЕ РАБОТАЕТ КАК НАДО!!!ЧТО_ТО НАДО СДЕЛАТЬ С НАСТРОЙКОЙ ВЬЮ КОНТРОЛЛЕРА
 
 final class LoginPresenter {
     weak var loginViewContrroller: LoginSceneDisplayProtocol?

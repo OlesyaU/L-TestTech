@@ -8,6 +8,7 @@
 import Foundation
 protocol LoginBusinessLogic {
     func getPhoneMask(request: String)
+    
 
 }
 
@@ -15,26 +16,24 @@ protocol LoginDataStoreProtocol {       // To store or pass data
 
     var phone: String { get set }
     var password: String { get set }
+    func getUserData(phone: String, password: String)
 }
 
 final class LoginInteractor: LoginDataStoreProtocol {
+    func getUserData(phone: String, password: String) {
+        LoginNetworkManager.sharedInstance.checkUser(phone: phone, password: password, handler: { success in
+            print(success)
+        })
+    }
+    
     var phone: String = ""
     var password: String = ""
     var presenter: LoginPresenterProtocol?
-//    var networkManager: LoginNetworkManagerProtocol?
-
 }
 
 extension LoginInteractor: LoginBusinessLogic {
 
     func getPhoneMask(request: String) {
-//
-//        networkManager?.getPhoneMask(request, handler: { dataFromApi in
-//            guard let dataFromApi else {return}
-////            презентер передает маску
-//            print(dataFromApi)
-//            self.presenter?.updateTextField(response: dataFromApi)
-//        })
         LoginNetworkManager.sharedInstance.getPhoneMask(request) { dataFromApi in
             guard let dataFromApi else {return}
             print(dataFromApi)

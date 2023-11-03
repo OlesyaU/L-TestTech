@@ -10,3 +10,4 @@ import Foundation
 struct PhoneMask: Codable {
     let phoneMask: String
 }
+

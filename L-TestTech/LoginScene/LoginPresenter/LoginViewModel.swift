@@ -29,9 +29,9 @@ struct LoginViewModel {
     let placeholderPasswordTextField = "Введите пароль"
     let openEye =  UIImage(named: "openEye")
     let closeEye =  UIImage(named: "closeEye")
-let wrongTextLabel = "Неверный пароль"
+    let wrongTextLabel = "Неверный пароль"
     let wrongColor: UIColor = .red
-   
 
+    
 
 }

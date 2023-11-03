@@ -6,6 +6,7 @@
 //
 import SnapKit
 import UIKit
+import RealmSwift
 /// Протокол логики для отображения подготовленной информации
 protocol LoginSceneDisplayProtocol: AnyObject {
 
@@ -23,7 +24,7 @@ final class LoginViewController: UIViewController {
     private var preMask = ""
     private var phoneNumber = ""
     private var password = ""
-    
+
     private lazy var logo: UIImageView = {
         let image = UIImageView(image: viewModel.logo)
         return image
@@ -106,11 +107,13 @@ final class LoginViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
+        getRealm()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
+        getRealm()
     }
 
     /// Метод для стартовой настройки компонентов сцены
@@ -133,11 +136,19 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = viewModel.backgroundColor
         layout()
+       
     }
 
     private func loadMask() {
         let requst = "http://dev-exam.l-tech.ru/api/v1/phone_masks"
         interactor?.getPhoneMask(request: requst)
+    }
+    private func getRealm() {
+        do {
+        let realm = try Realm()
+        } catch {
+        print(error.localizedDescription)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -250,7 +261,7 @@ final class LoginViewController: UIViewController {
             self.view.layoutIfNeeded()
             self.view.endEditing(true)
         }
-        checkUserData(phoneNumber: phoneNumber, password: password)
+        passUserData(phoneNumber: phoneNumber, password: password)
     }
 }
 
@@ -292,6 +303,10 @@ extension LoginViewController: UITextFieldDelegate {
             case 1:
                 textField.text = newPassword
                 password = newPassword
+                if newPassword.count == 9 {
+                    signInButton.isEnabled = true
+                    signInButton.backgroundColor = viewModel.buttonActiveColor
+                }
                 return newPassword.count <= 8 || string.isEmpty
             default:
                 return false
@@ -302,14 +317,16 @@ extension LoginViewController: UITextFieldDelegate {
         phoneNumber = phone.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
     }
 
-    private func checkUserData(phoneNumber: String, password: String) -> Bool {
-        return true
+    private func passUserData(phoneNumber: String, password: String)  {
+
+        interactor?.getUserData(phone: phoneNumber, password: password)
     }
 
     private func showWrongLabel() {
         labelWrong.isHidden = false
         passwordTextField.layer.borderColor = viewModel.wrongColor.cgColor
     }
+    
 }
 
 extension LoginViewController: LoginSceneDisplayProtocol {

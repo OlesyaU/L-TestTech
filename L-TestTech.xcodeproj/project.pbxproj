@@ -27,6 +27,9 @@
 		76EFBC092AEC4E0500A36D06 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EFBC082AEC4E0500A36D06 /* Models.swift */; };
 		76EFBC0B2AEEF8D500A36D06 /* String+ Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EFBC0A2AEEF8D500A36D06 /* String+ Extension.swift */; };
 		76EFBC0D2AF4438900A36D06 /* CheckDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EFBC0C2AF4438900A36D06 /* CheckDataFile.swift */; };
+		76EFBC122AF448D100A36D06 /* HomeIntersctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EFBC112AF448D100A36D06 /* HomeIntersctor.swift */; };
+		76EFBC142AF448E500A36D06 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EFBC132AF448E500A36D06 /* HomePresenter.swift */; };
+		76EFBC162AF473F600A36D06 /* LoginAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EFBC152AF473F600A36D06 /* LoginAnswer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		76EFBC082AEC4E0500A36D06 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		76EFBC0A2AEEF8D500A36D06 /* String+ Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ Extension.swift"; sourceTree = "<group>"; };
 		76EFBC0C2AF4438900A36D06 /* CheckDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckDataFile.swift; sourceTree = "<group>"; };
+		76EFBC112AF448D100A36D06 /* HomeIntersctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeIntersctor.swift; sourceTree = "<group>"; };
+		76EFBC132AF448E500A36D06 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		76EFBC152AF473F600A36D06 /* LoginAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAnswer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +142,9 @@
 		765DE0372AE919CF007EF5A7 /* HomeScene */ = {
 			isa = PBXGroup;
 			children = (
-				765DE0322AE91938007EF5A7 /* HomeViewController.swift */,
+				76EFBC0E2AF4484D00A36D06 /* HomeView */,
+				76EFBC0F2AF4485F00A36D06 /* HomeInteractor */,
+				76EFBC102AF4486C00A36D06 /* HomePresenter */,
 			);
 			path = HomeScene;
 			sourceTree = "<group>";
@@ -160,6 +168,8 @@
 		765DE03A2AE91A20007EF5A7 /* LoginInteractor */ = {
 			isa = PBXGroup;
 			children = (
+				76EFBBDC2AEBE02E00A36D06 /* LoginInteractor.swift */,
+				765DE0772AEA9A73007EF5A7 /* LoginNetworkManager.swift */,
 				765DE03D2AE91AD0007EF5A7 /* LoginModel */,
 			);
 			path = LoginInteractor;
@@ -168,28 +178,43 @@
 		765DE03B2AE91A72007EF5A7 /* LoginPresenter */ = {
 			isa = PBXGroup;
 			children = (
-				765DE03C2AE91AB3007EF5A7 /* LoginViewModel */,
 				765DE07C2AEAA0DD007EF5A7 /* LoginPresenter.swift */,
-			);
-			path = LoginPresenter;
-			sourceTree = "<group>";
-		};
-		765DE03C2AE91AB3007EF5A7 /* LoginViewModel */ = {
-			isa = PBXGroup;
-			children = (
 				765DE0412AE9205E007EF5A7 /* LoginViewModel.swift */,
 			);
-			path = LoginViewModel;
+			path = LoginPresenter;
 			sourceTree = "<group>";
 		};
 		765DE03D2AE91AD0007EF5A7 /* LoginModel */ = {
 			isa = PBXGroup;
 			children = (
 				765DE0752AEA99F1007EF5A7 /* PhoneMask.swift */,
-				765DE0772AEA9A73007EF5A7 /* LoginNetworkManager.swift */,
-				76EFBBDC2AEBE02E00A36D06 /* LoginInteractor.swift */,
+				76EFBC152AF473F600A36D06 /* LoginAnswer.swift */,
 			);
 			path = LoginModel;
+			sourceTree = "<group>";
+		};
+		76EFBC0E2AF4484D00A36D06 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				765DE0322AE91938007EF5A7 /* HomeViewController.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		76EFBC0F2AF4485F00A36D06 /* HomeInteractor */ = {
+			isa = PBXGroup;
+			children = (
+				76EFBC112AF448D100A36D06 /* HomeIntersctor.swift */,
+			);
+			path = HomeInteractor;
+			sourceTree = "<group>";
+		};
+		76EFBC102AF4486C00A36D06 /* HomePresenter */ = {
+			isa = PBXGroup;
+			children = (
+				76EFBC132AF448E500A36D06 /* HomePresenter.swift */,
+			);
+			path = HomePresenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,13 +342,16 @@
 				765DE0232AE91015007EF5A7 /* LoginViewController.swift in Sources */,
 				765DE01F2AE91015007EF5A7 /* AppDelegate.swift in Sources */,
 				765DE0212AE91015007EF5A7 /* SceneDelegate.swift in Sources */,
+				76EFBC162AF473F600A36D06 /* LoginAnswer.swift in Sources */,
 				765DE0442AE93375007EF5A7 /* LayoutHelper.swift in Sources */,
 				765DE07D2AEAA0DD007EF5A7 /* LoginPresenter.swift in Sources */,
+				76EFBC122AF448D100A36D06 /* HomeIntersctor.swift in Sources */,
 				765DE0782AEA9A73007EF5A7 /* LoginNetworkManager.swift in Sources */,
 				765DE0332AE91938007EF5A7 /* HomeViewController.swift in Sources */,
 				765DE0762AEA99F1007EF5A7 /* PhoneMask.swift in Sources */,
 				76EFBC092AEC4E0500A36D06 /* Models.swift in Sources */,
 				76EFBC0D2AF4438900A36D06 /* CheckDataFile.swift in Sources */,
+				76EFBC142AF448E500A36D06 /* HomePresenter.swift in Sources */,
 				765DE0352AE91956007EF5A7 /* DetailsViewController.swift in Sources */,
 				76EFBBDD2AEBE02E00A36D06 /* LoginInteractor.swift in Sources */,
 				76EFBC0B2AEEF8D500A36D06 /* String+ Extension.swift in Sources */,

@@ -28,12 +28,12 @@ enum Models {
         }
     }
     enum FetchOrRegisterUser {
-        struct UserRequest {
-            let mask: String
-        }
-        struct UserResponse {
-            let mask: String
-        }
+//        struct UserRequest {
+//            let mask: String
+//        }
+//        struct UserResponse {
+//            let mask: String
+//        }
 //        we have class User for Realm? maybe have to use it
         struct User: Codable {
             let phone: String
