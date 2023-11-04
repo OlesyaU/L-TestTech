@@ -21,8 +21,9 @@ protocol LoginDataStoreProtocol {       // To store or pass data
 
 final class LoginInteractor: LoginDataStoreProtocol {
     func getUserData(phone: String, password: String) {
-        LoginNetworkManager.sharedInstance.checkUser(phone: phone, password: password, handler: { success in
-            print(success)
+        LoginNetworkManager.sharedInstance.checkUser(phone: phone, password: password, handler: { [weak self] success in
+            guard let success else {return}
+            self?.presenter?.checkUser(isKnown: success)
         })
     }
     

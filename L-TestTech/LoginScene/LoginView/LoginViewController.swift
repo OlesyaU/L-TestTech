@@ -9,9 +9,8 @@ import UIKit
 import RealmSwift
 /// Протокол логики для отображения подготовленной информации
 protocol LoginSceneDisplayProtocol: AnyObject {
-
     func displayMask(mask: String)
-    //    func displayUser(viewModel: LoginViewModel)
+    func isKnownUser(isKnown: Bool) -> Bool
 }
 
 final class LoginViewController: UIViewController {
@@ -318,7 +317,6 @@ extension LoginViewController: UITextFieldDelegate {
     }
 
     private func passUserData(phoneNumber: String, password: String)  {
-
         interactor?.getUserData(phone: phoneNumber, password: password)
     }
 
@@ -326,10 +324,13 @@ extension LoginViewController: UITextFieldDelegate {
         labelWrong.isHidden = false
         passwordTextField.layer.borderColor = viewModel.wrongColor.cgColor
     }
-    
 }
 
 extension LoginViewController: LoginSceneDisplayProtocol {
+    func isKnownUser(isKnown: Bool) -> Bool {
+//        changeState to vc
+    }
+
     func displayUser(viewModel: LoginViewModel) {
         self.viewModel = viewModel
     }

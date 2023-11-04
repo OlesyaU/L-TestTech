@@ -15,10 +15,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
           window = UIWindow(windowScene: windowScene)
-        let root = LoginViewController()
+        let loginVC = LoginViewController()
+        let root =  UINavigationController(rootViewController: loginVC)
         window?.rootViewController = root
-        root.fetchMask()
-//        LoginNetworkManager.sharedInstance.checkUser(phone: "799999999", password: "Asdf12345")
+        loginVC.fetchMask()
         window?.makeKeyAndVisible()
     }
 

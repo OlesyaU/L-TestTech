@@ -45,12 +45,14 @@ final class LoginNetworkManager: LoginNetworkManagerProtocol {
         ]
         let url = "http://dev-exam.l-tech.ru/api/v1/auth"
 
-        AF.request(url, method: .post, parameters: parameters, headers: headers).responseData { response  in
-
-            debugPrint(response)
-
-
-        }
+        AF.request(url, method: .post, parameters: parameters, encoder: JSONParameterEncoder.default, headers: headers).responseDecodable(of: Success.self, completionHandler: { response in
+            switch response.result {
+                case .success(let data):
+                    handler(data.success)
+                    print(data.success)
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+        })
     }
-
 }

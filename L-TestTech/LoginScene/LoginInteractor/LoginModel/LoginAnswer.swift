@@ -6,15 +6,6 @@
 //
 
 import Foundation
-struct LoginAnswer: Codable {
-    let response: Response
-}
-struct Response: Codable {
-    let body: Body
-}
-struct Body: Codable {
-    let body : Success
-}
 struct Success : Codable {
     let success: Bool
 }
