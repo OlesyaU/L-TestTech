@@ -7,10 +7,10 @@
 import SnapKit
 import UIKit
 import RealmSwift
-/// Протокол логики для отображения подготовленной информации
+
 protocol LoginSceneDisplayProtocol: AnyObject {
     func displayMask(mask: String)
-    func isKnownUser(isKnown: Bool) -> Bool
+    func isKnownUser(isKnown: Bool)
 }
 
 final class LoginViewController: UIViewController {
@@ -135,7 +135,7 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = viewModel.backgroundColor
         layout()
-       
+
     }
 
     private func loadMask() {
@@ -144,9 +144,9 @@ final class LoginViewController: UIViewController {
     }
     private func getRealm() {
         do {
-        let realm = try Realm()
+            let realm = try Realm()
         } catch {
-        print(error.localizedDescription)
+            print(error.localizedDescription)
         }
     }
 
@@ -261,6 +261,8 @@ final class LoginViewController: UIViewController {
             self.view.endEditing(true)
         }
         passUserData(phoneNumber: phoneNumber, password: password)
+        //тут должна быть проверка и мы должны сохранять юзера в бд, но возвращается в сегда false с тех номеров поэтому покка не сохраняем  а просто пушим следующий контроллер
+        goToSecondScene()
     }
 }
 
@@ -312,7 +314,7 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
     
-  private func getPhone(phone: String)  {
+    private func getPhone(phone: String)  {
         phoneNumber = phone.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
     }
 
@@ -324,11 +326,16 @@ extension LoginViewController: UITextFieldDelegate {
         labelWrong.isHidden = false
         passwordTextField.layer.borderColor = viewModel.wrongColor.cgColor
     }
+    private func goToSecondScene(){
+        let homeVC = HomeViewController()
+        navigationController?.pushViewController(homeVC, animated: true)
+    }
 }
 
 extension LoginViewController: LoginSceneDisplayProtocol {
-    func isKnownUser(isKnown: Bool) -> Bool {
-//        changeState to vc
+    func isKnownUser(isKnown: Bool) {
+        //        changeState to vc but numbers isnt work
+        //
     }
 
     func displayUser(viewModel: LoginViewModel) {

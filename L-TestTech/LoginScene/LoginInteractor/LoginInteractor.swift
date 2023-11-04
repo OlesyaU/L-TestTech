@@ -8,27 +8,16 @@
 import Foundation
 protocol LoginBusinessLogic {
     func getPhoneMask(request: String)
-    
+    func getUserData(phone: String, password: String)
 
 }
 
-protocol LoginDataStoreProtocol {       // To store or pass data
+protocol LoginDataStoreProtocol {
 
-    var phone: String { get set }
-    var password: String { get set }
-    func getUserData(phone: String, password: String)
 }
 
 final class LoginInteractor: LoginDataStoreProtocol {
-    func getUserData(phone: String, password: String) {
-        LoginNetworkManager.sharedInstance.checkUser(phone: phone, password: password, handler: { [weak self] success in
-            guard let success else {return}
-            self?.presenter?.checkUser(isKnown: success)
-        })
-    }
-    
-    var phone: String = ""
-    var password: String = ""
+
     var presenter: LoginPresenterProtocol?
 }
 
@@ -41,16 +30,12 @@ extension LoginInteractor: LoginBusinessLogic {
             self.presenter?.updateTextField(response: dataFromApi)
         }
 
+        func getUserData(phone: String, password: String) {
+            LoginNetworkManager.sharedInstance.checkUser(phone: phone, password: password, handler: { [weak self] success in
+                guard let success else {return}
+                self?.presenter?.checkUser(isKnown: success)
+            })
+        }
     }
 
-
 }
-
-// MARK: - Business Logic Functions
-//extension CleanSceneInteractor: CleanSceneBusinessLogic {
-//    // MARK: Do something
-//    func doSomething(request: CleanSceneModels.Something.Request) {
-//        worker?.doSomething() { someResponse in
-//          presenter?.presentSomething(response: response)
-//    }
-//}
