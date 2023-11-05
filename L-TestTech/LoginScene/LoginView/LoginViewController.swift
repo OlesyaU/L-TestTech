@@ -134,8 +134,9 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = viewModel.backgroundColor
+        navigationController?.isNavigationBarHidden = true
         layout()
-
+        getRealm()
     }
 
     private func loadMask() {
@@ -262,7 +263,20 @@ final class LoginViewController: UIViewController {
         }
         passUserData(phoneNumber: phoneNumber, password: password)
         //тут должна быть проверка и мы должны сохранять юзера в бд, но возвращается в сегда false с тех номеров поэтому покка не сохраняем  а просто пушим следующий контроллер
-        goToSecondScene()
+        //        realm?.write({
+        //
+        //        })
+
+        if checkPassword(password: password) {
+            goToSecondScene()
+        } else {
+            labelWrong.isHidden = false
+        }
+    }
+    private func checkPassword(password: String) -> Bool {
+        let correctPassword = "devExam18"
+        print("checkPassword(password: String) -> Bool \(password == correctPassword)")
+        return password == correctPassword
     }
 }
 
@@ -304,9 +318,15 @@ extension LoginViewController: UITextFieldDelegate {
             case 1:
                 textField.text = newPassword
                 password = newPassword
-                if newPassword.count == 9 {
+                if newPassword.count == 9, newLength == 11 {
                     signInButton.isEnabled = true
                     signInButton.backgroundColor = viewModel.buttonActiveColor
+                    if  !checkPassword(password: password) {
+
+                        showWrongLabel()
+                    }
+                } else {
+                    labelWrong.isHidden = true
                 }
                 return newPassword.count <= 8 || string.isEmpty
             default:
@@ -327,8 +347,12 @@ extension LoginViewController: UITextFieldDelegate {
         passwordTextField.layer.borderColor = viewModel.wrongColor.cgColor
     }
     private func goToSecondScene(){
-        let homeVC = HomeViewController()
+        let homeInteractor = HomeInteractor()
+        let url = "http://dev-exam.l-tech.ru/api/v1/posts"
+        homeInteractor.getArticles(url: url)
+        let homeVC =  HomeTabBarController()
         navigationController?.pushViewController(homeVC, animated: true)
+        //        UITabBar.appearance().backgroundColor = .secondarySystemBackground
     }
 }
 
@@ -338,12 +362,10 @@ extension LoginViewController: LoginSceneDisplayProtocol {
         //
     }
 
-    func displayUser(viewModel: LoginViewModel) {
-        self.viewModel = viewModel
-    }
+
 
     func displayMask(mask: String) {
-        var mutatedMask = mask.components(separatedBy: " ").dropFirst().joined()
+        let mutatedMask = mask.components(separatedBy: " ").dropFirst().joined()
         preMask = mask.components(separatedBy: " ").first ?? "+0"
         phoneTextField.text = preMask
         self.mask = mutatedMask

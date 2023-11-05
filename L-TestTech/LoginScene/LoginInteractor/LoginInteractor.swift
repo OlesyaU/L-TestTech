@@ -22,6 +22,13 @@ final class LoginInteractor: LoginDataStoreProtocol {
 }
 
 extension LoginInteractor: LoginBusinessLogic {
+    func getUserData(phone: String, password: String) {
+        LoginNetworkManager.sharedInstance.checkUser(phone: phone, password: password, handler: { [weak self] success in
+            guard let success else {return}
+            self?.presenter?.checkUser(isKnown: success)
+        })
+    }
+
 
     func getPhoneMask(request: String) {
         LoginNetworkManager.sharedInstance.getPhoneMask(request) { dataFromApi in
@@ -30,12 +37,7 @@ extension LoginInteractor: LoginBusinessLogic {
             self.presenter?.updateTextField(response: dataFromApi)
         }
 
-        func getUserData(phone: String, password: String) {
-            LoginNetworkManager.sharedInstance.checkUser(phone: phone, password: password, handler: { [weak self] success in
-                guard let success else {return}
-                self?.presenter?.checkUser(isKnown: success)
-            })
-        }
+        
     }
 
 }

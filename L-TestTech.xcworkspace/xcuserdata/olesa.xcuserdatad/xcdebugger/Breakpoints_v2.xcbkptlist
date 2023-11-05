@@ -52,5 +52,165 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89B7BAA3-BA6D-41B3-8B33-E2D4757CD3EA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "L-TestTech/LoginScene/LoginView/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "checkPassword(password:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "89B7BAA3-BA6D-41B3-8B33-E2D4757CD3EA - 62d3561c5ecc6c84"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "L_TestTech.LoginViewController.checkPassword(password: Swift.String) -&gt; Swift.Bool"
+                  moduleName = "L-TestTech"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olesa/Developer/L-TestTech/L-TestTech/LoginScene/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "276"
+                  endingLineNumber = "276"
+                  offsetFromSymbolStart = "47">
+               </Location>
+               <Location
+                  uuid = "89B7BAA3-BA6D-41B3-8B33-E2D4757CD3EA - 62d3561c5ecc6c84"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "L_TestTech.LoginViewController.checkPassword(password: Swift.String) -&gt; Swift.Bool"
+                  moduleName = "L-TestTech"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olesa/Developer/L-TestTech/L-TestTech/LoginScene/LoginView/LoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "276"
+                  endingLineNumber = "276"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1263C721-81DC-43AA-89C6-D0BEEBC1A3C3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "L-TestTech/LoginScene/LoginView/LoginViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "signInButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "81C7689E-196C-41BB-8E57-9114CF21DA8C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "L-TestTech/HomeScene/HomePresenter/HomePresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "HomePresenter"
+            landmarkType = "21">
+            <Locations>
+               <Location
+                  uuid = "81C7689E-196C-41BB-8E57-9114CF21DA8C - a8d9b4ce8a5fd1df"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "L_TestTech.HomePresenter.startNewLoop() -&gt; ()"
+                  moduleName = "L-TestTech"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olesa/Developer/L-TestTech/L-TestTech/HomeScene/HomePresenter/HomePresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "81C7689E-196C-41BB-8E57-9114CF21DA8C - a8d9b4ce8a5fd1df"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "L_TestTech.HomePresenter.startNewLoop() -&gt; ()"
+                  moduleName = "L-TestTech"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olesa/Developer/L-TestTech/L-TestTech/HomeScene/HomePresenter/HomePresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F084836A-E600-4BF1-815C-F8C6BD5BD9E1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "L-TestTech/HomeScene/HomePresenter/HomePresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "showArticles(articles:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F084836A-E600-4BF1-815C-F8C6BD5BD9E1 - c006f68c59ea6968"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "L_TestTech.HomePresenter.showArticles(articles: Swift.Array&lt;L_TestTech.Article&gt;) -&gt; ()"
+                  moduleName = "L-TestTech"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olesa/Developer/L-TestTech/L-TestTech/HomeScene/HomePresenter/HomePresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "74">
+               </Location>
+               <Location
+                  uuid = "F084836A-E600-4BF1-815C-F8C6BD5BD9E1 - c006f68c59ea6968"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "L_TestTech.HomePresenter.showArticles(articles: Swift.Array&lt;L_TestTech.Article&gt;) -&gt; ()"
+                  moduleName = "L-TestTech"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olesa/Developer/L-TestTech/L-TestTech/HomeScene/HomePresenter/HomePresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "93">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
